@@ -24,11 +24,11 @@ app.get("/", (req,res) => {
 
 
 app.post("/", (req,res) => {
-  // res.render("result", {data: "ok"})
+  
     input = req.body.msg
     console.log(input)
           
-    const completionParams = {
+    const comParams = {
             "prompt": "You:"+input+"  ",
              "temperature": 0.5,
               "max_tokens": 60,
@@ -38,11 +38,11 @@ app.post("/", (req,res) => {
               "stop": ["AI:"]
            }
 
-              client.post("https://api.openai.com/v1/engines/text-curie-001/completions", completionParams)
+              client.post("https://api.openai.com/v1/engines/text-curie-001/completions", comParams)
               .then(results => {
 
                 
-                 var output = results.data.choices[0].text
+                 var output =(results.data.choices[0].text)
                   res.render("chat",{data:"AI:" +`${output}`} )
                   //res.send(JSON.stringify(output))
               })
